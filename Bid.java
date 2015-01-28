@@ -7,7 +7,7 @@
  */
 public class Bid
 {
-    // The person making the bid.
+    // The person making the bid.  (persona que hace la oferta)
     private final Person bidder;
     // The value of the bid. This could be a large number so
     // the long type has been used.

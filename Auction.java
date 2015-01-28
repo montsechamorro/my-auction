@@ -110,18 +110,23 @@ public class Auction
      */
     public void close()
     {
-                
+
         for(Lot lot : lots) {
+            String details = lot.getNumber() + " : " + lot.getDescription();
 
-            if (lot.getHighestBid() == null){
-                System.out.println(lot.toString());
+            if (lot.getHighestBid() != null)
+            {
+                details = details + "(oferta más alta: )" + lot.getHighestBid().getValue() + " de: " + lot.getHighestBid().getBidder().getName();
+                                                          //esto nos genera un objeto bid sobre el que invocamos getValue
+                                                          //al invocar getBidder nos devuelve un objto person al que invocamos getname
             }
-            else{
-                System.out.println(lot.toString());
-                System.out.println(lot.getHighestBid().getBidder().getName());
-
+            else
+            {
+                details = details + "(Todavía no hay oferta)";
             }
-
+            System.out.println(details);
         }
+
     }
 }
+
