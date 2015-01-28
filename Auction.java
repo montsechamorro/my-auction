@@ -38,12 +38,13 @@ public class Auction
      * Show the full list of lots in this auction.
      */
     public void showLots()
-    {
-        for(Lot lot : lots) {
+    {              
+        for(Lot lot : lots){ 
             System.out.println(lot.toString());
         }
+
     }
-    
+
     /**
      * Make a bid for a lot.
      * A message is printed indicating whether the bid is
@@ -57,18 +58,18 @@ public class Auction
     {
         Lot selectedLot = getLot(lotNumber);
         if(selectedLot != null) {
-            Bid bid = new Bid(bidder, value);
-            boolean successful = selectedLot.bidFor(bid);
+
+            boolean successful = selectedLot.bidFor(new Bid(bidder, value));
             if(successful) {
                 System.out.println("The bid for lot number " +
-                                   lotNumber + " was successful.");
+                    lotNumber + " was successful.");
             }
             else {
                 // Report which bid is higher.
                 Bid highestBid = selectedLot.getHighestBid();
                 System.out.println("Lot number: " + lotNumber +
-                                   " already has a bid of: " +
-                                   highestBid.getValue());
+                    " already has a bid of: " +
+                    highestBid.getValue());
             }
         }
     }
@@ -87,9 +88,9 @@ public class Auction
             // right lot.
             if(selectedLot.getNumber() != lotNumber) {
                 System.out.println("Internal error: Lot number " +
-                                   selectedLot.getNumber() +
-                                   " was returned instead of " +
-                                   lotNumber);
+                    selectedLot.getNumber() +
+                    " was returned instead of " +
+                    lotNumber);
                 // Don't return an invalid lot.
                 selectedLot = null;
             }
@@ -97,8 +98,30 @@ public class Auction
         }
         else {
             System.out.println("Lot number: " + lotNumber +
-                               " does not exist.");
+                " does not exist.");
             return null;
+        }
+    }
+
+    /**
+     * metodo que muestra todos los detalles de los items que se estan subastando
+     * de los que ha habido pujas, muestra el nombre de la persona que ha hecho la puja mas alta
+     * y el valor de dicha puja. del resto debe indicar que no ha habido pujas
+     */
+    public void close()
+    {
+                
+        for(Lot lot : lots) {
+
+            if (lot.getHighestBid() == null){
+                System.out.println(lot.toString());
+            }
+            else{
+                System.out.println(lot.toString());
+                System.out.println(lot.getHighestBid().getBidder().getName());
+
+            }
+
         }
     }
 }
